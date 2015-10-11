@@ -1,0 +1,29 @@
+{
+	"images": {
+		"cloud" : "assets/images/8bit_cloud.png",
+		"eliya_placeholder" : "assets/images/Eliya_with_Arrow_Weapon_medium_sprite.png",
+		"eliya_seraph" : "assets/images/Eliya_Seraphim_Mode_medium_sprite.png",
+		"boss_1" : "assets/images/Sea_Hydra_Place_Holder.png"
+	},
+	"sounds": {
+	},
+	"fonts": {
+	},
+	"animations": {
+		"cloud": {
+			"strip": "assets/images/8bit_cloud.png",
+			"frames": 1,
+			"msPerFrame": 100
+		},
+		"eliya_arrow" : {
+			"strip" : "assets/images/Eliya_Arrow.png",
+			"frames" : 1,
+			"msPerFrame": 300
+			} ,
+		"hydra" : {
+			"strip": "assets/images/Sea_Hydra_animation_full_idle.png",
+			"frames": 3,
+			"msPerFrame": 300
+		}
+	}
+};
