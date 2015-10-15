@@ -178,26 +178,6 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 		};
 		scene.bullets.push(bullet);
 	};
-	var hydraFire2 = function(){
-		var bullet = new Splat.AnimatedEntity(this.x, this.y, 1, 1);
-		bullet.targetx = scene.player.x + scene.player.width/2;
-		bullet.targety = scene.player.y + scene.player.height/2;
-		bullet.speed = 1;
-		bullet.distance =  Math.sqrt( Math.pow((bullet.targetx - bullet.x), 2) + Math.pow((bullet.targety - bullet.y),2));
-		bullet.speedx = Math.abs(bullet.targetx - bullet.x)/bullet.distance * bullet.speed;
-		bullet.speedy = Math.abs(bullet.targety - bullet.y)/bullet.distance * bullet.speed;
-		if (bullet.targetx - bullet.x < 0){
-			bullet.speedx *= -1;
-		}
-		if (bullet.targety - bullet.y < 0){
-			bullet.speedy *= -1;
-		}
-		bullet.move = function(){
-			this.x += this.speedx;
-			this.y += this.speedy;
-		};
-		scene.bullets.push(bullet);
-	};
 
 	scene.cloud = new Splat.AnimatedEntity(0,0, canvas.width, canvas.height, cloud, 0, 0);
 	scene.cloud2 = new Splat.AnimatedEntity(400,0, canvas.width, canvas.height, cloud, 0, 0);
