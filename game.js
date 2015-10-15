@@ -178,12 +178,11 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 		};
 		scene.bullets.push(bullet);
 	};
-	var fireball = game.animations.get("fireball");
 	var hydraFire2 = function(){
-		var bullet = new Splat.AnimatedEntity(this.x, this.y, 1, 1, fireball,0 , 0);
+		var bullet = new Splat.AnimatedEntity(this.x, this.y, 1, 1);
 		bullet.targetx = scene.player.x + scene.player.width/2;
 		bullet.targety = scene.player.y + scene.player.height/2;
-		bullet.speed = 0;
+		bullet.speed = 1;
 		bullet.distance =  Math.sqrt( Math.pow((bullet.targetx - bullet.x), 2) + Math.pow((bullet.targety - bullet.y),2));
 		bullet.speedx = Math.abs(bullet.targetx - bullet.x)/bullet.distance * bullet.speed;
 		bullet.speedy = Math.abs(bullet.targety - bullet.y)/bullet.distance * bullet.speed;
@@ -193,7 +192,7 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 		if (bullet.targety - bullet.y < 0){
 			bullet.speedy *= -1;
 		}
-		bullet.move1 = function(){
+		bullet.move = function(){
 			this.x += this.speedx;
 			this.y += this.speedy;
 		};
@@ -207,7 +206,7 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 	scene.arrow = game.animations.get("eliya_arrow");
 	scene.hydra = new Splat.AnimatedEntity(200, 20, hydra.width, hydra.height , hydra, 0, 0);
 	scene.hydra.spawner1 = new Splat.Entity(scene.hydra.x + 24, scene.hydra.y+75, 0, 0);
-	scene.hydra.spawner1.fire = hydraFire2;
+	scene.hydra.spawner1.fire = hydraFire;
 	scene.hydra.spawner2 = new Splat.Entity(scene.hydra.x + 70, scene.hydra.y+28, 0, 0);
 	scene.hydra.spawner2.fire = hydraFire;
 	scene.hydra.spawner3 = new Splat.Entity(scene.hydra.x + 117, scene.hydra.y+73, 0, 0);
@@ -272,16 +271,8 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 		scene.hydra.spawner3.fire();
 	}
 
-	if (game.keyboard.consumePressed("space")){
-		scene.hydra.spawner1.fire();
-		console.log("fireball");
-	}
 	scene.player.move(elapsedMillis);
 	scene.hydra.move(elapsedMillis);
-
-	for(var x=0 ; x< scene.bullets.length; x++){
-		scene.bullets[x].move(elapsedMillis);
-	}
 
 	// player boundaries in relation to the camera
 	if (scene.player.x <= scene.camera.x){
@@ -299,8 +290,8 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 	}
 	
 	//projectile management
-	for( x = 0; x < scene.bullets.length; x++){
-		scene.bullets[x].move1();
+	for(var x = 0; x < scene.bullets.length; x++){
+		scene.bullets[x].move();
 		if(scene.bullets[x].y > scene.camera.height || 
 		   scene.bullets[x].y < 0 || scene.bullets[x].x < scene.camera.x || 
 		   scene.bullets[x].x > scene.camera.x + scene.camera.width){
@@ -332,7 +323,7 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 	scene.hydra.draw(context);
 	for(var x=0 ; x< scene.bullets.length; x++){
 		scene.bullets[x].draw(context);
-		// particles.add(3, scene.bullets[x].x, scene.bullets[x].y, 0, "gradient");
+		particles.add(3, scene.bullets[x].x, scene.bullets[x].y, 0, "gradient");
 	}
 	particles.draw(context);
 }));
