@@ -152,10 +152,11 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 	// initialization
 	particles.reset();
 	particles.gravity = 0;
-	particles.maxAge = 500;
+	particles.maxAge = 1000;
 
 	var scene = this;
 	scene.bullets = [];
+	scene.seatile = game.animations.get("sea-tile");
 	var cloud = game.animations.get("cloud");
 	var hydra = game.animations.get("hydra");
 	var hydraFire = function(){
@@ -303,7 +304,7 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 	scene.hydra.draw(context);
 	for(var x=0 ; x< scene.bullets.length; x++){
 		scene.bullets[x].draw(context);
-		particles.add(3, scene.bullets[x].x, scene.bullets[x].y, 0, "gradient");
+		particles.add(3, scene.bullets[x].x, scene.bullets[x].y, 0, "circle");
 	}
 	particles.draw(context);
 }));

@@ -5,7 +5,8 @@
 		"eliya_placeholder" : "assets/images/Eliya_with_Arrow_Weapon_medium_sprite.png",
 		"eliya_seraph" : "assets/images/Eliya_Seraphim_Mode_medium_sprite.png",
 		"boss_1" : "assets/images/Sea_Hydra_Place_Holder.png",
-		"circle" : "assets/images/circle.png"
+		"circle" : "assets/images/circle.png",
+		"sea-tile" : "assets/images/Sea_Segment.png",
 	},
 	"sounds": {
 	},
