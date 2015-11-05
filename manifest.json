@@ -31,7 +31,17 @@
 		"fireball" : {
 			"strip": "assets/images/Small_Fire_Ball.png",
 			"frames": 2,
-			"msPerFrame": 600
+			"msPerFrame": 200
+		},
+		"gradient" :{
+			"strip": "assets/images/gradient.png",
+			"frames": 1,
+			"msPerFrame": 100
+		},
+		"circle": {
+			"strip": "assets/images/circle.png",
+			"frames" : 1,
+			"msPerFrame": 100
 		}
 	}
 };
