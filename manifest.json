@@ -29,7 +29,7 @@
 			"msPerFrame": 300
 		},
 		"fireball" : {
-			"strip": "assets/images/Fire_Ball_downward_animation.png",
+			"strip": "assets/images/Small_Fire_Ball.png",
 			"frames": 2,
 			"msPerFrame": 600
 		}

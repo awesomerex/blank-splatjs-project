@@ -20,7 +20,8 @@ function createPlayer(x, y, width, height){
 	var entity = new Splat.Entity(x,y,width,height);
 	entity.sprite = game.images.get("eliya_placeholder");
 	entity.draw = function(context){
-		context.drawImage(entity.sprite, this.x, this.y);
+		//fix the dragging images by math.floor
+		context.drawImage(entity.sprite, Math.floor(this.x), this.y);
 	};
 	return entity;
 }
@@ -64,7 +65,7 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 	particles.maxAge = 1000;
 
 	scene.bullets = [];
-	scene.seatile = game.animations.get("sea-tile");
+	scene.seatile = game.images.get("sea-tile");
 	var cloud = game.animations.get("cloud");
 	var hydra = game.animations.get("hydra");
 	var hydraFire = function(){
@@ -122,14 +123,18 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 	}
 	var ox = this.player.x - this.camera.x;
 	var oy = this.player.y - this.camera.y;
+
 	this.camera.move(elapsedMillis);
+
 	this.camera.vx = 0;
+	this.player.vx = 0;
+	this.player.vy = 0;
+
 	this.player.x = this.camera.x + ox;
 	this.player.y = this.camera.y + oy;
 
-	//console.log(this.player.x - this.camera.x);
-	this.player.vx = 0;
-	this.player.vy = 0;
+	//console.log(this.player.x - this.camera.x, this.player.x, this.camera.x);
+	
 	
 	// set the boundary for the scrolling camera
 	if (game.keyboard.isPressed("left")) {
@@ -143,6 +148,10 @@ game.scenes.add("title", new Splat.Scene(canvas, function() {
 	}
 	if (game.keyboard.isPressed("down")) {
 		scene.player.vy = 0.2;
+	}
+
+	if (game.keyboard.isPressed("q")) {
+		console.log(this.player.x, this.camera.x, ox);
 	}
 
 	scene.player.move(elapsedMillis);
